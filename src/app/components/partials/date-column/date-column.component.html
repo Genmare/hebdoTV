@@ -1,0 +1,7 @@
+@for (timeSlices of day()!.timeSlices; track $index) {
+  <div class="bg-{{ $index }}">
+    @for (content of timeSlices.contents; track content.contentID) {
+      <program [program]="content" />
+    }
+  </div>
+}

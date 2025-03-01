@@ -1,0 +1,43 @@
+header {
+  color: white;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #33333388;
+  // margin-inline: -1rem;
+  padding-inline: 1rem;
+  z-index: 2;
+  height: 5rem;
+}
+
+select {
+  border: none;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+  background-color: #33333388;
+  color: white;
+  position: relative;
+
+  &:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+  }
+}
+
+option:checked {
+  background-color: black;
+}
+
+option:hover {
+  background-color: white !important;
+}

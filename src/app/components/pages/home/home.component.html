@@ -1,0 +1,14 @@
+<div class="content">
+  @for (day of days; track $index) {
+    <div style="text-align: center">
+      <span class="dayName">{{ getDay($index - 1) | date: "fullDate" }}</span>
+      <date-column [day]="day" />
+    </div>
+  }
+  <!-- @for (timeSlice of timeSlices; track $index) {
+    <div style="text-align: center">
+      <span class="dayName">{{ getDay($index - 1) | date: "fullDate" }}</span>
+      <date-column [day]="timeSlice" />
+    </div>
+  } -->
+</div>

@@ -1,0 +1,38 @@
+@use "sass:color";
+@use "sass:math";
+
+$base-color: #ffffff;
+// scale($base-color, $lightness: (100-50 *#{$i}) %)
+
+@debug color.adjust($base-color, $lightness: 15%, $space: hsl);
+@debug color.adjust($base-color, $lightness: 15%, $space: oklch);
+@debug color.scale($base-color, $lightness: 15%, $space: hsl);
+
+@for $i from 0 through 4 {
+  @debug $i;
+  // @debug calc((100 - 10 * $i) / 100);
+  $sat-dec: math.percentage(calc((100 - 10 * $i) / 100));
+  @debug "$sat-dec: #{$sat-dec}";
+  $light: math.percentage(calc((100 - 50 * $i) / 100));
+  @debug "$light: #{$light}";
+  $hue-dec: 360 - 120 * $i;
+  @debug "$hue-dec: #{$hue-dec}";
+  @debug "color.adjust($base-color, $hue: $hue-dec): #{color.adjust($base-color, $hue: $hue-dec)}";
+  $adjust-color: color.adjust(
+    $base-color,
+    $hue: $hue-dec,
+    $saturation: $sat-dec,
+    $lightness: $light
+  );
+  @debug "$adjust-color: #{$adjust-color}";
+  .bg-#{$i} {
+    border-top: solid;
+    background-color: rgba($adjust-color, 0.2);
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  // color.scale(#999999, $saturation: $sat-dec),
+  // color.adjust(#999999, $lightness: -30%)
+}

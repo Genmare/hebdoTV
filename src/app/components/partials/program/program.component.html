@@ -1,0 +1,41 @@
+<div class="content" [ngStyle]="{ height: getHeight() }">
+  <div class="card">
+    @if (program()) {
+      <label>{{ program()?.startTime | date: "HH:mm" }}</label>
+      <label class="title">{{ program()?.title }}</label>
+      @if (content && content.detail) {
+        <program-picture
+          [href]="content.detail.informations.sharingURL"
+          [src]="picture"
+          [loaded]="loaded"
+        />
+        <div class="review">
+          @for (review of content.detail.informations.reviews; track $index) {
+            <span class="review-name">{{ review.name }}</span>
+            <!-- <span class="review-name"
+              >{{ review.name }} {{ review.stars.value }}</span
+            > -->
+            <star-content
+              [isTelerama]="review.stars.type === 'telerama'"
+              [number]="review.stars.value"
+            />
+          }
+          <a
+            class="tele7jours"
+            [href]="
+              'https://www.programme-television.org/recherche?q=' +
+              content.detail!.informations.title
+            "
+            target="_blank"
+            >Télé 7 jours</a
+          >
+        </div>
+      }
+      <!--  @for (cont of content.episodes.contents; track $index) { -->
+      @if (content) {
+        <span class="duration">Durée: {{ getDuration() }} min</span>
+      }
+      <!-- } -->
+    }
+  </div>
+</div>

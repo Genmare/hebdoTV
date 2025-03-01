@@ -1,0 +1,11 @@
+<header>
+  <h1>My TV Week Program</h1>
+  <p style="padding-right: 1rem">
+    Chaîne:
+    <select #channel (change)="onSelected(channel.value)" [(ngModel)]="option">
+      @for (channel of channels; track $index) {
+        <option [value]="channel.channelNum">{{ channel.name }}</option>
+      }
+    </select>
+  </p>
+</header>

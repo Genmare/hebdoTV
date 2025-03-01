@@ -1,0 +1,8 @@
+{
+    "/programme-tv": {
+        "target": "https://www.canalplus.com",
+        "secure": true,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}

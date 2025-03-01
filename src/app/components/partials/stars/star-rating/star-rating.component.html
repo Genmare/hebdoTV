@@ -1,0 +1,62 @@
+@if (isTelerama()) {
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 10 10"
+    width="10"
+    height="10"
+    class="star"
+  >
+    <path fill="#CE0F0F" d="M0 0h10v10H0z"></path>
+    <path
+      fill="#fff"
+      fill-rule="evenodd"
+      d="M8.125 1.875h-6.25v2.232h1.923v4.018h2.404V4.107h1.923z"
+      clip-rule="evenodd"
+    ></path>
+  </svg>
+} @else {
+  @if (state().isHalf) {
+    <span class="flex h-full relative"
+      ><svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 5 10"
+        class="absolute h-full fill-dt-theme-icon-rating-icon-primary-selected clip-left-1/2"
+        width="5"
+        height="10"
+      >
+        <path
+          class="yellow_color"
+          fill-rule="evenodd"
+          d="M 5 0 L 3.452 3.29 L 0 3.82 l 2.5 2.56 L 1.91 10 L 5 8.29 z"
+          clip-rule="evenodd"
+        ></path></svg
+      ><svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 5 10"
+        class="h-full fill-dt-theme-icon-rating-icon-primary-unselected"
+        width="5"
+        height="10"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M 0 0 L 1.548 3.29 L 5 3.82 l -2.5 2.56 L 3.09 10 L 0 8.29 z"
+          clip-rule="evenodd"
+        ></path></svg
+    ></span>
+  } @else {
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 10 10"
+      width="10"
+      height="10"
+      class="star absolute h-full fill-dt-theme-icon-rating-icon-primary-selected"
+    >
+      <path
+        [class]="state().isFull ? 'yellow_color' : ''"
+        fill-rule="evenodd"
+        d="M5 0 3.452 3.29 0 3.82l2.5 2.56L1.91 10 5 8.29 8.087 10l-.59-3.62L10 3.82l-3.457-.53z"
+        clip-rule="evenodd"
+      ></path>
+    </svg>
+  }
+}

@@ -1,0 +1,7 @@
+@if (loaded()) {
+  <a [href]="href()" target="_blank" @animation>
+    <img [src]="src()" />
+  </a>
+} @else {
+  <div class="loading"></div>
+}

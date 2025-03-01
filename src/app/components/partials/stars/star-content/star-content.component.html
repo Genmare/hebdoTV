@@ -1,0 +1,19 @@
+<div class="content">
+  @if (isTelerama()) {
+    @for (item of array(); track $index) {
+      <star-rating [isTelerama]="isTelerama()" />
+    }
+  } @else {
+    @for (item of [1, 2, 3, 4, 5]; track $index) {
+      <!-- <img
+      *ngFor="let current of [1, 2, 3, 4, 5]"
+      [src]="getStarImage(current)"
+      [ngStyle]="styles"
+    /> -->
+      <star-rating
+        [isTelerama]="isTelerama()"
+        [state]="getStarImage($index + 1)"
+      />
+    }
+  }
+</div>
