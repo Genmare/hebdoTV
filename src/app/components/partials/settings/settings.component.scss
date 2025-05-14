@@ -1,0 +1,27 @@
+:host {
+  overflow-y: auto;
+  // overflow-y: overlay;
+  height: calc(100vh - 7rem);
+  background-color: #2298;
+}
+
+div,
+div:first-child,
+div:last-child {
+  border: solid 2px #cccc;
+  border-right: none;
+}
+
+div:first-child,
+div {
+  border-bottom: none;
+}
+
+div:last-child,
+div {
+  border-top: none;
+}
+
+label {
+  padding-left: 0.5rem;
+}

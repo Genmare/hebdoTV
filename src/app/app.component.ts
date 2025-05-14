@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/partials/header/header.component';
-// import { CanalPlusServiceService } from './services/canal-plus-service.service';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +10,4 @@ import { HeaderComponent } from './components/partials/header/header.component';
 })
 export class AppComponent {
   title = 'hebdoTV';
-
-  // constructor(private canalPlusService: CanalPlusServiceService) {}
 }

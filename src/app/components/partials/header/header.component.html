@@ -1,11 +1,99 @@
 <header>
-  <h1>My TV Week Program</h1>
-  <p style="padding-right: 1rem">
-    Chaîne:
-    <select #channel (change)="onSelected(channel.value)" [(ngModel)]="option">
-      @for (channel of channels; track $index) {
-        <option [value]="channel.channelNum">{{ channel.name }}</option>
-      }
-    </select>
-  </p>
+  <div class="main-content">
+    <h1>My TV Week Program</h1>
+    <div class="button-group">
+      <a
+        id="morning"
+        class="button"
+        [routerLink]="['/home']"
+        fragment="matin"
+        [queryParams]="{ channel: option }"
+        >Matin</a
+      >
+      <a
+        id="afternoon"
+        class="button"
+        [routerLink]="['/home']"
+        fragment="apres-midi"
+        [queryParams]="{ channel: option }"
+        >Après-midi</a
+      >
+      <a
+        id="early-evening"
+        class="button"
+        [routerLink]="['/home']"
+        fragment="debut-soiree"
+        [queryParams]="{ channel: option }"
+        >{{ bSelectSize ? "D.soirée" : "Début de soirée" }}</a
+      >
+      <a
+        id="evening"
+        class="button"
+        [routerLink]="['/home']"
+        fragment="soiree"
+        [queryParams]="{ channel: option }"
+        >Soirée</a
+      >
+      <a
+        id="night"
+        class="button"
+        [routerLink]="['/home']"
+        fragment="nuit"
+        [queryParams]="{ channel: option }"
+        >Nuit</a
+      >
+    </div>
+    <div class="right-group">
+      <div class="select-group">
+        <label>Chaîne:</label>
+        <div>
+          <img-select
+            [items]="channels"
+            [initIndex]="option ? option : '0'"
+            bindLabel="name"
+            bindValue="channelNum"
+            bindSrc="logoPath.URLLogoChannel"
+            (selected)="onSelected2($event)"
+            class="select-channel"
+          />
+          <select
+            #channel
+            (change)="onSelected(channel.value)"
+            [(ngModel)]="option"
+            class="select-channel"
+          >
+            @for (channel of channels; track channel.channelNum) {
+              <option [value]="channel.channelNum">
+                <span>
+                  {{ channel.name }}
+                </span>
+                @if (channel.logoPath.URLLogoChannel) {
+                  <img
+                    [src]="channel.logoPath.URLLogoChannel"
+                    [alt]="channel.name"
+                  />
+                }
+              </option>
+            }
+          </select>
+        </div>
+      </div>
+      <button (click)="toggleSettings()" [class.open]="bSettings">
+        <svg
+          width="25px"
+          height="25px"
+          viewBox="0 0 24 22"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M5 6.5H19V8H5V6.5Z" fill="white" />
+          <path d="M5 16.5H19V18H5V16.5Z" fill="white" />
+          <path d="M5 11.5H19V13H5V11.5Z" fill="white" />
+        </svg>
+      </button>
+    </div>
+    @if (bSettings) {
+      <settings @openClose />
+    }
+  </div>
 </header>

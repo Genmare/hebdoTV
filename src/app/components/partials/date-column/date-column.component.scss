@@ -26,7 +26,7 @@ $base-color: #ffffff;
   );
   @debug "$adjust-color: #{$adjust-color}";
   .bg-#{$i} {
-    border-top: solid;
+    // border-top: solid;
     background-color: rgba($adjust-color, 0.2);
     padding: 0.5rem;
     display: flex;
@@ -35,4 +35,34 @@ $base-color: #ffffff;
   }
   // color.scale(#999999, $saturation: $sat-dec),
   // color.adjust(#999999, $lightness: -30%)
+}
+
+:host {
+  display: flex;
+}
+
+.content {
+  display: flex;
+  flex: 0 0 290px;
+  border-top: solid;
+
+  // flex-direction: column;
+
+  // .timeSlice {
+  //   display: flex;
+  //   text-align: center;
+  // }
+
+  .column {
+    min-width: 290px;
+  }
+
+  .dayName {
+    position: sticky;
+    top: 5rem;
+    z-index: 3;
+    text-align: center;
+    background-color: #33333388;
+    // margin-inline: -0.5rem;
+  }
 }

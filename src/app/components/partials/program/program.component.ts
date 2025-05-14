@@ -16,6 +16,8 @@ import { ProgContentService } from 'app/services/prog-content.service';
 import { count, Observable } from 'rxjs';
 import { ProgramPictureComponent } from '../program-picture/program-picture.component';
 import { StarContentComponent } from '../stars/star-content/star-content.component';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { setUrlImage } from 'app/components/tools/imageTools';
 
 @Component({
   selector: 'program',
@@ -31,6 +33,8 @@ import { StarContentComponent } from '../stars/star-content/star-content.compone
 export class ProgramComponent implements OnInit {
   program = input<Program>();
 
+  picture_visible = input<boolean>(true);
+
   content!: UrlPage;
 
   picture!: string;
@@ -41,7 +45,12 @@ export class ProgramComponent implements OnInit {
 
   static counter = 0;
 
-  constructor(private progContentService: ProgContentService) {
+  // formatTitle!: SafeHtml | undefined;
+
+  constructor(
+    private progContentService: ProgContentService,
+    private satinizer: DomSanitizer,
+  ) {
     effect(() => this.getContent());
   }
 
@@ -129,23 +138,24 @@ export class ProgramComponent implements OnInit {
 
           // this.picture = content.detail.informations.URLImage
           if (this.content?.detail) {
-            this.picture = this.setUrlImage(
+            this.picture = setUrlImage(
               this.content.detail.informations.URLImage,
               254,
               143,
               80,
             );
           }
+          // this.formatTitle = this.setFormatTitle();
           this.loading = false;
         });
     }
   }
 
-  setUrlImage(urlImage: string, x: number, y: number, quality: number) {
-    return urlImage
-      .replace('{resolutionXY}', x.toString() + 'x' + y.toString())
-      .replace('{imageQualityPercentage}', quality.toString());
-  }
+  // setUrlImage(urlImage: string, x: number, y: number, quality: number) {
+  //   return urlImage
+  //     .replace('{resolutionXY}', x.toString() + 'x' + y.toString())
+  //     .replace('{imageQualityPercentage}', quality.toString());
+  // }
 
   protected get loaded() {
     return this.content && !this.loading;
@@ -155,8 +165,16 @@ export class ProgramComponent implements OnInit {
     const duration = this.getDuration();
     let height = 0;
     height = this.getReviewNumber() * 16;
-    if (duration <= 30) height += 258;
+    if (duration <= 30) height += 278;
     else height += 250 + duration;
+    if (!this.picture_visible()) {
+      height = 130;
+      if (this.content && this.content.detail?.informations.reviews) {
+        height += this.content.detail.informations.reviews.length * 16;
+      }
+    }
+    if (this.content && this.content.detail?.informations.personnalities)
+      height += 15;
     return height + 'px';
   }
 
@@ -175,4 +193,23 @@ export class ProgramComponent implements OnInit {
       review_num = this.content.detail?.informations.reviews.length;
     return review_num;
   }
+
+  // setFormatTitle(): SafeHtml | undefined {
+  //   let de = 'de ';
+  //   if (this.content && this.content.detail?.informations.personnalities) {
+  //     const title =
+  //       this.content.detail.informations.personnalities[0].personnalitiesList[0]
+  //         .title;
+  //     const firstLetter = title[0].toLowerCase();
+  //     if (this.vowelTest(firstLetter)) de = "d'";
+  //     return this.satinizer.bypassSecurityTrustHtml(
+  //       `${de}<span class="name">${title}</span>`,
+  //     );
+  //   }
+  //   return undefined;
+  // }
+
+  // private vowelTest(s: string) {
+  //   return /^[aAeéèEiIoOuU]$/i.test(s);
+  // }
 }

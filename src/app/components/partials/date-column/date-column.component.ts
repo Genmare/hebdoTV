@@ -8,14 +8,22 @@ import {
 } from '@angular/core';
 import { Day } from 'app/models/Day';
 import { ProgramComponent } from '../program/program.component';
+import { TimeSlice } from 'app/models/TimeSlice';
 
 @Component({
   selector: 'date-column',
-  imports: [ProgramComponent],
+  imports: [DatePipe, ProgramComponent],
   templateUrl: './date-column.component.html',
   styleUrl: './date-column.component.scss',
 })
 export class DateColumnComponent {
-  day = input<Day>();
-  // day = input<time>();
+  // day = input<Day>();
+  timeSlices = input<TimeSlice[]>();
+
+  getDay(index: number): Date {
+    let currentDay = new Date();
+
+    currentDay.setDate(currentDay.getDate() + index);
+    return currentDay;
+  }
 }

@@ -1,0 +1,14 @@
+@for (dayTime of dayTimes; track $index) {
+  <div>
+    <label>{{ dayTime.value }}</label>
+    <hsl-slider
+      #slider
+      [dayTime]="dayTime.value"
+      [(hue_value)]="colorVariables[dayTime.label]!.hue"
+      [(sat_value)]="colorVariables[dayTime.label]!.saturation"
+      [(light_value)]="colorVariables[dayTime.label]!.lightness"
+      [(trans_value)]="colorVariables[dayTime.label]!.transparency"
+      class="sliders"
+    />
+  </div>
+}

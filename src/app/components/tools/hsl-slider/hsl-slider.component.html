@@ -1,0 +1,42 @@
+<div class="container">
+  <label>Hue [0,360] {{ hue_value() }}</label>
+  <input
+    type="range"
+    min="0"
+    max="360"
+    step="1"
+    [value]="hue_value()"
+    (input)="onHueChange()"
+    [(ngModel)]="hue_value"
+  />
+  <label>Saturation {{ sat_value() }}%</label>
+  <input
+    type="range"
+    min="0"
+    max="100"
+    step="1"
+    [value]="sat_value()"
+    (input)="onSaturationChange()"
+    [(ngModel)]="sat_value"
+  />
+  <label>Lightness {{ light_value() }}%</label>
+  <input
+    type="range"
+    min="0"
+    max="100"
+    step="1"
+    [value]="light_value()"
+    (input)="onLightnessChange()"
+    [(ngModel)]="light_value"
+  />
+  <label>Transparency [0-1] {{ trans_value() }}</label>
+  <input
+    type="range"
+    min="0"
+    max="1"
+    step="0.01"
+    [value]="trans_value()"
+    (input)="onTransparencyChange()"
+    [(ngModel)]="trans_value"
+  />
+</div>

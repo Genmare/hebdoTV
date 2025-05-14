@@ -3,41 +3,180 @@ header {
   position: fixed;
   top: 0;
   width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   background-color: #33333388;
-  // margin-inline: -1rem;
   padding-inline: 1rem;
   z-index: 2;
   height: 5rem;
 }
 
-select {
-  border: none;
-  border-radius: 0.3rem;
-  padding: 0.5rem;
-  margin-left: 0.5rem;
-  background-color: #33333388;
-  color: white;
-  position: relative;
+.main-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  &:after {
+  .button-group {
+    & > * {
+      background-color: inherit;
+      color: white;
+      padding-inline: 1rem;
+      padding-block: 0.5rem;
+      border-color: #aaaaaa;
+      border-style: solid;
+      text-transform: uppercase;
+      text-decoration: none;
+
+      font-size: 0.8rem;
+      font-weight: 400;
+      border-inline-width: 1px;
+    }
+    #morning {
+      border-radius: 1rem 0 0 1rem;
+      border-inline-width: 2px;
+    }
+    #night {
+      border-radius: 0 1rem 1rem 0;
+      border-inline-width: 2px;
+    }
+
+    .button:hover {
+      background-color: #333333;
+    }
+
+    .button:focus,
+    .button:active {
+      background-color: white;
+      color: black;
+    }
+  }
+
+  .right-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .select-group {
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+
+    .select-channel {
+      // flex: 1 1 0;
+      // border: none;
+      border-color: white;
+      border-radius: 0.3rem;
+      padding: 0.5rem;
+      margin-left: 0.5rem;
+      background-color: #33333388;
+      color: white;
+      // position: relative;
+      max-width: 200px;
+    }
+
+    img-select > .img-select-container {
+      padding: 5rem;
+    }
+
+    img-select {
+      border-color: yellow;
+    }
+
+    // img-select {
+    //   padding: 0;
+    //   width: 100%;
+    // }
+  }
+
+  option:checked {
+    background-color: black;
+  }
+
+  option:hover {
+    background-color: white !important;
+  }
+  button {
+    background-color: transparent;
+    border: solid white 1px;
+    border-radius: 3px;
+    padding: 0 0.2rem;
+
+    &:hover,
+    &.open {
+      background-color: white;
+      color: black;
+      border-color: #33333355;
+      path {
+        fill: black;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    svg {
+      background-color: transparent;
+    }
+  }
+  settings {
     position: absolute;
-    content: "";
-    top: 14px;
-    right: 10px;
-    width: 0;
-    height: 0;
-    border: 6px solid transparent;
-    border-color: #fff transparent transparent transparent;
+    top: 6rem;
+    right: 1rem;
   }
 }
 
-option:checked {
-  background-color: black;
-}
+@media only screen and (max-width: 1220px) {
+  .main-content {
+    .select-group {
+      // flex-direction: column;
+      // align-items: flex-start;
+      grid-template-columns: 1fr;
+      select,
+      img-select {
+        margin-left: 0;
+      }
+    }
 
-option:hover {
-  background-color: white !important;
+    button {
+      margin-top: 1rem;
+    }
+    .button-group {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+
+      & > * {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #morning,
+      #afternoon {
+        grid-column-end: span 3;
+        border-bottom: none;
+      }
+      #morning {
+        border-radius: 1rem 0 0 0;
+        border-left-width: 3px;
+      }
+      #afternoon {
+        border-radius: 0 1rem 0 0;
+        border-right-width: 3px;
+      }
+      #early-evening,
+      #evening,
+      #night {
+        grid-column-end: span 2;
+        border-left-width: 3px;
+      }
+      #early-evening {
+        border-radius: 0 0 0 1rem;
+      }
+      #night {
+        border-radius: 0 0 1rem 0;
+        border-right-width: 3px;
+      }
+    }
+  }
 }

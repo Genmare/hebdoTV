@@ -1,14 +1,15 @@
 .content {
   background: repeating-linear-gradient(
     45deg,
-    #444444,
-    #444444 8px,
-    #555555 8px,
-    #555555 16px
+    #44444499,
+    #44444499 8px,
+    #55555599 8px,
+    #55555599 16px
   );
   border-radius: 0.4rem;
   padding: 1rem;
-  box-shadow: inset 0rem 0rem 0.5rem 0.5rem #444444;
+  box-shadow: inset 0rem 0rem 0.5rem 0.5rem #44444499;
+  border: 1px solid #555555;
   // margin-bottom: 1rem;
   transition: transform 200ms;
 
@@ -49,6 +50,20 @@
     text-overflow: ellipsis;
     display: inline-block;
     padding-bottom: 0.4rem;
+  }
+
+  .director {
+    font-size: 0.8rem;
+    margin-block-start: 0.2rem;
+    margin-block-end: 0.4rem;
+    .name {
+      font-size: 0.9rem;
+      text-transform: capitalize;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      // display: inline-block;
+    }
   }
 
   .review {
