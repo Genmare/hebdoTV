@@ -95,27 +95,30 @@ export class HeaderComponent implements OnInit {
       });
     });
 
+    const width = 20;
+    const height = 20;
+    const quality = 40;
     if (this.canalPlusService.token) {
       this.canalPlusService.makeChannelList()?.subscribe((channels) => {
         this.channels = channels.map((channel) => {
           const logoPath = channel.logoPath;
           logoPath.URLLogoChannel = setUrlImage(
             logoPath.URLLogoChannel,
-            15,
-            15,
-            40,
+            width,
+            height,
+            quality,
           );
           logoPath.URLLogoChannelForDarkMode = setUrlImage(
             logoPath.URLLogoChannelForDarkMode,
-            15,
-            15,
-            40,
+            width,
+            height,
+            quality,
           );
           logoPath.URLLogoChannelForLightMode = setUrlImage(
             logoPath.URLLogoChannelForLightMode,
-            15,
-            15,
-            40,
+            width,
+            height,
+            quality,
           );
           return {
             ...channel,

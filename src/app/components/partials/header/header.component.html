@@ -45,7 +45,7 @@
     </div>
     <div class="right-group">
       <div class="select-group">
-        <label>Chaîne:</label>
+        <span>Chaîne :</span>
         <div>
           <img-select
             [items]="channels"
@@ -56,7 +56,7 @@
             (selected)="onSelected2($event)"
             class="select-channel"
           />
-          <select
+          <!-- <select
             #channel
             (change)="onSelected(channel.value)"
             [(ngModel)]="option"
@@ -75,7 +75,7 @@
                 }
               </option>
             }
-          </select>
+          </select> -->
         </div>
       </div>
       <button (click)="toggleSettings()" [class.open]="bSettings">

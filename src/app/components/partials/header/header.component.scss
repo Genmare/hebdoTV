@@ -59,34 +59,17 @@ header {
     display: grid;
     align-items: center;
     grid-template-columns: auto 1fr;
-    gap: 0.5rem;
+    gap: 0.2rem;
     flex-wrap: wrap;
 
     .select-channel {
-      // flex: 1 1 0;
-      // border: none;
       border-color: white;
       border-radius: 0.3rem;
       padding: 0.5rem;
-      margin-left: 0.5rem;
       background-color: #33333388;
       color: white;
-      // position: relative;
-      max-width: 200px;
+      max-width: 230px;
     }
-
-    img-select > .img-select-container {
-      padding: 5rem;
-    }
-
-    img-select {
-      border-color: yellow;
-    }
-
-    // img-select {
-    //   padding: 0;
-    //   width: 100%;
-    // }
   }
 
   option:checked {
@@ -130,11 +113,9 @@ header {
 @media only screen and (max-width: 1220px) {
   .main-content {
     .select-group {
-      // flex-direction: column;
-      // align-items: flex-start;
       grid-template-columns: 1fr;
-      select,
-      img-select {
+
+      .select-channel {
         margin-left: 0;
       }
     }
@@ -177,6 +158,14 @@ header {
         border-radius: 0 0 1rem 0;
         border-right-width: 3px;
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 940px) {
+  .main-content {
+    .button-group {
+      margin-inline-end: 2rem;
     }
   }
 }

@@ -1,43 +1,45 @@
-<div class="container">
-  <div class="list-container" [class.listItem]="dropdownOpen()">
-    <ul
-      class="item-list"
-      role="listbox"
-      [attr.aria-activedescendant]="activeDescendantId()"
-    >
-      @for (item of items(); track item[bindValue()]) {
-        <li
-          #liItems
-          class="item"
-          tabindex="-1"
-          [class]="
-            item[bindValue()] === itemSelected[bindValue()] ? 'selected' : ''
-          "
-          [attr.aria-selected]="itemSelected[bindValue()] === item[bindValue()]"
-          (click)="selectItem(item)"
-          (keydown.enter)="selectItem(item)"
-          (keydown.arrowdown)="handleArrow($event, $index, 1)"
-          (keydown.arrowup)="handleArrow($event, $index, -1)"
-          (keydown.escape)="closeDropdown()"
-          [attr.id]="'option-' + $index"
-          role="option"
-        >
-          {{ item[bindLabel()] }}
-          <img [src]="itemSrc[$index]" [alt]="item[bindLabel()]" />
-        </li>
-      }
-    </ul>
-  </div>
-  <button
-    #buttonRef
-    type="button"
-    class="img-select-container"
-    tabindex="0"
-    (click)="toggleDropdown()"
-    (keydown)="handleButtonKeydown($event)"
-  >
+<!-- <div class="container"> -->
+<!-- (click)="toggleDropdown()" -->
+<div
+  #buttonRef
+  type="button"
+  class="img-select-container"
+  tabindex="0"
+  (keydown)="handleButtonKeydown($event)"
+>
+  <div class="button-container">
     <span>{{ buttonLabel }}</span>
     <img [src]="btnImgSrc" [alt]="buttonLabel" />
     <i class="arrow down"></i>
-  </button>
+  </div>
 </div>
+<div class="list-container" [class.listItem]="dropdownOpen()">
+  <ul
+    class="item-list"
+    role="listbox"
+    [attr.aria-activedescendant]="activeDescendantId()"
+  >
+    @for (item of items(); track item[bindValue()]) {
+      <li
+        #liItems
+        class="item"
+        tabindex="-1"
+        [class]="
+          item[bindValue()] === itemSelected[bindValue()] ? 'selected' : ''
+        "
+        [attr.aria-selected]="itemSelected[bindValue()] === item[bindValue()]"
+        (click)="selectItem(item)"
+        (keydown.enter)="selectItem(item)"
+        (keydown.arrowdown)="handleArrow($event, $index, 1)"
+        (keydown.arrowup)="handleArrow($event, $index, -1)"
+        (keydown.escape)="closeDropdown()"
+        [attr.id]="'option-' + $index"
+        role="option"
+      >
+        {{ item[bindLabel()] }}
+        <img [src]="itemSrc[$index]" [alt]="item[bindLabel()]" />
+      </li>
+    }
+  </ul>
+</div>
+<!-- </div> -->

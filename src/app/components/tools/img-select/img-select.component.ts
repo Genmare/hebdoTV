@@ -1,8 +1,10 @@
 import {
+  afterNextRender,
   Component,
   effect,
   ElementRef,
   HostListener,
+  inject,
   input,
   output,
   signal,
@@ -44,7 +46,10 @@ export class ImgSelectComponent {
   // https://www.w3.org/TR/wai-aria-practices-1.1/#combobox
   activeDescendantId = signal<string>(''); // mis à jour à chaque fois qu'un élément est sélectionné
 
-  constructor(private elementRef: ElementRef) {
+  private elementRef = inject(ElementRef);
+
+  // constructor(private elementRef: ElementRef) {
+  constructor() {
     effect(() => {
       this.itemLabel = this.items().map((item) => item[this.bindLabel()]);
       const srcProperties = this.bindSrc().split('.');
@@ -82,7 +87,44 @@ export class ImgSelectComponent {
         });
       }
     });
+
+    // Pour mettre la liste en bas du bouton
+    // quelque soit la taille du bouton
+    afterNextRender(() => {
+      const hostEl = this.elementRef.nativeElement as HTMLElement;
+
+      const listContainerClass = hostEl.querySelector(
+        '.list-container',
+      ) as HTMLElement;
+
+      if (listContainerClass) {
+        // const styles = getComputedStyle(hostEl);
+        const height = hostEl.offsetHeight;
+
+        console.log('ImgSelectComponent, height', height);
+        listContainerClass.style.top = `${height}px`;
+      }
+    });
   }
+
+  @HostListener('click', ['$event'])
+  handleClick(event: Event) {
+    // event.stopPropagation();
+    this.toggleDropdown();
+  }
+
+  // @HostListener('keydown', ['$event'])
+  // handleKeydown2(event: KeyboardEvent) {
+  //   // event.stopPropagation();
+  //   this.handleButtonKeydown(event);
+  //   // if (event.key === 'ArrowDown') {
+  //   //   this.handleArrow(event, this.liItems().length - 1, 1);
+  //   // } else if (event.key === 'ArrowUp') {
+  //   //   this.handleArrow(event, 0, -1);
+  //   // } else if (event.key === 'Escape') {
+  //   //   this.closeDropdown();
+  //   // }
+  // }
 
   findItem() {
     return this.items().find(
@@ -97,7 +139,7 @@ export class ImgSelectComponent {
   selectItem(item: any) {
     this.itemSelected = item;
     this.buttonLabel = item[this.bindLabel()];
-    this.dropdownOpen.set(false);
+    this.dropdownOpen.set(true);
     this.selected.emit(item);
     this.buttonRef()?.nativeElement.focus();
   }
@@ -110,6 +152,8 @@ export class ImgSelectComponent {
         return;
       } else this.toggleDropdown();
     }
+
+    console.log('handleButtonKeydown', event.key);
 
     // On met le focus sur l’élément sélectionné (ou le premier)
     queueMicrotask(() => {
