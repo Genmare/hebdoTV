@@ -1,10 +1,8 @@
 :host {
   box-sizing: border-box;
   display: block;
-  // min-width: 100%;
 
   position: relative;
-  // display: flex;
 
   /* Couleur de fond (fallback + valeur système) */
   background-color: #eee; /* fallback */
@@ -18,9 +16,6 @@
   font-family: system-ui, sans-serif;
   font-size: 13px;
   font: -webkit-small-control; /* pour Chrome/Safari */
-
-  /* Espacement */
-  // padding: 1px 4px;
 
   /* Bordure */
   border: 1px solid #ccc; /* fallback */
@@ -39,16 +34,7 @@
 
   /* Curseur standard */
   cursor: default;
-
-  /* Définir une hauteur similaire à un select */
-  // height: 1.8em; /* peut varier selon OS/navigateur */
 }
-
-// .container {
-//   // width: 100%;
-//   display: flex;
-//   position: relative;
-// }
 
 .button-container {
   display: flex;
@@ -61,21 +47,8 @@
   flex: 1 0 0;
   user-select: none;
   position: relative;
-  // background: unset;
-  // color: unset;
-  // border: unset;
-  // border: 1px
-  //   solid -internal-auto-base(light-dark(#767676, #858585), currentColor);
-  // border-color: unset;
   white-space: nowrap;
   width: auto;
-  // padding-inline: 0.2rem;
-  // padding: 0.1rem 0.2rem;
-
-  // display: flex;
-  // justify-content: space-between;
-  // align-items: center;
-  // flex: 1 0 0;
 
   span {
     margin-inline-end: auto;
@@ -87,7 +60,6 @@
   }
 
   .arrow {
-    // border: solid black;
     border: solid;
     border-width: 0 2px 2px 0;
     display: inline-block;
@@ -109,7 +81,6 @@
   height: 60vh;
   display: none;
   position: absolute;
-  // top: calc(1rem + 4px); // 4px border
   left: 0;
   &.listItem {
     display: block;
@@ -117,8 +88,6 @@
 }
 
 .item-list {
-  // display: none;
-  // position: absolute;
   overflow: auto;
   background-color: gray;
   list-style-type: none;
@@ -126,7 +95,6 @@
   padding: 0;
   width: 15rem;
   height: 100vh;
-  // border-radius: 0.3rem;
   height: 60vh;
 }
 

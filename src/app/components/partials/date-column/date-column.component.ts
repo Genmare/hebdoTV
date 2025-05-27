@@ -1,12 +1,5 @@
-import { AsyncPipe, DatePipe } from '@angular/common';
-import {
-  ChangeDetectorRef,
-  Component,
-  input,
-  OnChanges,
-  SimpleChanges,
-} from '@angular/core';
-import { Day } from 'app/models/Day';
+import { DatePipe } from '@angular/common';
+import { Component, ElementRef, input } from '@angular/core';
 import { ProgramComponent } from '../program/program.component';
 import { TimeSlice } from 'app/models/TimeSlice';
 
@@ -20,8 +13,10 @@ export class DateColumnComponent {
   // day = input<Day>();
   timeSlices = input<TimeSlice[]>();
 
+  constructor(public elementRef: ElementRef<HTMLElement>) {}
+
   getDay(index: number): Date {
-    let currentDay = new Date();
+    const currentDay = new Date();
 
     currentDay.setDate(currentDay.getDate() + index);
     return currentDay;

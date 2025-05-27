@@ -1,5 +1,11 @@
 import { ViewportRuler } from '@angular/cdk/overlay';
-import { Component, NgZone, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  NgZone,
+  OnInit,
+  viewChildren,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -10,6 +16,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { setUrlImage } from 'app/components/tools/imageTools';
 import { ImgSelectComponent } from 'app/components/tools/img-select/img-select.component';
+import { DayTimeService } from 'app/services/day-time.service';
 
 type Channel = {
   channelNum: string;
@@ -56,12 +63,17 @@ export class HeaderComponent implements OnInit {
   bSelectSize = false;
   bSettings = false;
 
+  private dayTimeAnchorRefs = viewChildren('anchorRef', {
+    read: ElementRef<HTMLAnchorElement>,
+  });
+
   constructor(
     private canalPlusService: CanalPlusServiceService,
     private router: Router,
     private localService: LocalService,
     private route: ActivatedRoute,
     private viewportRuler: ViewportRuler,
+    private dayTimeService: DayTimeService,
     private ngZone: NgZone,
   ) {
     this.viewportRuler
@@ -78,6 +90,20 @@ export class HeaderComponent implements OnInit {
           else this.bSelectSize = false;
         });
       });
+
+    this.dayTimeService.getCurrentSection().subscribe((section) => {
+      let anchorElementRef = null;
+      const sectionIdName = section.concat('_id');
+      for (const anchorRef of this.dayTimeAnchorRefs()) {
+        anchorElementRef = (anchorRef as ElementRef<HTMLAnchorElement>)
+          .nativeElement;
+        if (anchorElementRef.id === sectionIdName) {
+          anchorElementRef.classList.add('active');
+          continue;
+        }
+        anchorElementRef.classList.remove('active');
+      }
+    });
   }
 
   ngOnInit(): void {

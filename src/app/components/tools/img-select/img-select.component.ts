@@ -113,19 +113,6 @@ export class ImgSelectComponent {
     this.toggleDropdown();
   }
 
-  // @HostListener('keydown', ['$event'])
-  // handleKeydown2(event: KeyboardEvent) {
-  //   // event.stopPropagation();
-  //   this.handleButtonKeydown(event);
-  //   // if (event.key === 'ArrowDown') {
-  //   //   this.handleArrow(event, this.liItems().length - 1, 1);
-  //   // } else if (event.key === 'ArrowUp') {
-  //   //   this.handleArrow(event, 0, -1);
-  //   // } else if (event.key === 'Escape') {
-  //   //   this.closeDropdown();
-  //   // }
-  // }
-
   findItem() {
     return this.items().find(
       (item) => item[this.bindValue()] === this.initIndex(),

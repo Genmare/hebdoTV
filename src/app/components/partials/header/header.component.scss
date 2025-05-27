@@ -29,11 +29,11 @@ header {
       font-weight: 400;
       border-inline-width: 1px;
     }
-    #morning {
+    #morning_id {
       border-radius: 1rem 0 0 1rem;
       border-inline-width: 2px;
     }
-    #night {
+    #night_id {
       border-radius: 0 1rem 1rem 0;
       border-inline-width: 2px;
     }
@@ -42,8 +42,14 @@ header {
       background-color: #333333;
     }
 
-    .button:focus,
-    .button:active {
+    // pour éviter que le style active reste malgré le changement de section
+    .button:active,
+    .button:focus {
+      color: inherit;
+      background: none;
+      outline: none;
+    }
+    .button.active {
       background-color: white;
       color: black;
     }
@@ -58,7 +64,7 @@ header {
   .select-group {
     display: grid;
     align-items: center;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: repeat(3, auto);
     gap: 0.2rem;
     flex-wrap: wrap;
 
@@ -68,22 +74,16 @@ header {
       padding: 0.5rem;
       background-color: #33333388;
       color: white;
-      max-width: 230px;
+      min-width: 12rem;
+      max-width: 14.5rem;
     }
   }
 
-  option:checked {
-    background-color: black;
-  }
-
-  option:hover {
-    background-color: white !important;
-  }
   button {
     background-color: transparent;
     border: solid white 1px;
     border-radius: 3px;
-    padding: 0 0.2rem;
+    padding: 0.2rem 0.3rem;
 
     &:hover,
     &.open {
@@ -113,16 +113,18 @@ header {
 @media only screen and (max-width: 1220px) {
   .main-content {
     .select-group {
-      grid-template-columns: 1fr;
+      grid-template-columns: auto auto;
+      grid-template-rows: auto 1fr;
+      span {
+        margin-inline-start: 0.6rem;
+        grid-column: span 2;
+      }
 
       .select-channel {
         margin-left: 0;
       }
     }
 
-    button {
-      margin-top: 1rem;
-    }
     .button-group {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
@@ -132,29 +134,29 @@ header {
         justify-content: center;
         align-items: center;
       }
-      #morning,
-      #afternoon {
+      #morning_id,
+      #afternoon_id {
         grid-column-end: span 3;
         border-bottom: none;
       }
-      #morning {
+      #morning_id {
         border-radius: 1rem 0 0 0;
         border-left-width: 3px;
       }
-      #afternoon {
+      #afternoon_id {
         border-radius: 0 1rem 0 0;
         border-right-width: 3px;
       }
-      #early-evening,
-      #evening,
-      #night {
+      #early-evening_id,
+      #evening_id,
+      #night_id {
         grid-column-end: span 2;
         border-left-width: 3px;
       }
-      #early-evening {
+      #early-evening_id {
         border-radius: 0 0 0 1rem;
       }
-      #night {
+      #night_id {
         border-radius: 0 0 1rem 0;
         border-right-width: 3px;
       }

@@ -101,3 +101,11 @@ $angle: math.div(360, 5);
   // border: 0.5rem #33333388;
   outline: 0.5rem solid #33333388;
 }
+
+#center {
+  position: sticky;
+  top: 50%;
+  width: 100%;
+  // border: 1px solid red;
+  border: 1px solid transparent;
+}
