@@ -20,18 +20,13 @@ import { TimeSlice } from 'app/models/TimeSlice';
 export class CanalPlusServiceService {
   readonly tokenKey = 'hebdo_token';
 
-  // private currentChannelSubject = new BehaviorSubject<string>('0');
-  // public currentChannelObservable = this.currentChannelSubject.asObservable();
   private currentChannelSubject!: BehaviorSubject<string>;
   public currentChannelObservable!: Observable<string>;
 
   token!: string | undefined;
-  // public tokenObservable = new Observable<string>(token);
   public tokenObservable!: Observable<string>;
-  // days!: Day[];
   timeSclices!: TimeSlice[][];
 
-  // private daysSubject = new BehaviorSubject<Day[]>([]);
   private daysSubject = new BehaviorSubject<TimeSlice[][]>([]);
   public daysObservable = this.daysSubject.asObservable();
 
@@ -60,15 +55,12 @@ export class CanalPlusServiceService {
         console.log('\tthis.currentChannel', this.currentChannel);
 
         this.getWeekDataOfChannel(this.currentChannel).subscribe((values) => {
-          // this.days = values;
           this.timeSclices = values;
-          // console.log('getWeekDataOfChannel', 'this.days', this.days);
           console.log(
             'getWeekDataOfChannel',
             'this.timeSclices',
             this.timeSclices,
           );
-          // this.daysSubject.next(this.days);
           this.daysSubject.next(this.timeSclices);
         });
       }
@@ -188,7 +180,7 @@ export class CanalPlusServiceService {
                 }[],
                 currentChannel,
               ) => {
-                console.log('currentChannel', currentChannel);
+                // console.log('currentChannel', currentChannel);
 
                 const found = regex.exec(currentChannel.URLChannelSchedule);
                 if (found)

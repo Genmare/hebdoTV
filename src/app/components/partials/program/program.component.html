@@ -1,14 +1,15 @@
-<div class="content" [ngStyle]="{ height: getHeight() }">
+<div class="content" [ngStyle]="{ height: height }">
   <div class="card">
     @if (program()) {
-      <label>{{ program()?.startTime | date: "HH:mm" }}</label>
-      <label class="title">{{ program()?.title }}</label>
+      <span>{{ program()?.startTime | date: "HH:mm" }}</span>
+      <span class="title">{{ program()?.title }}</span>
       @if (content && content.detail) {
         @if (picture_visible()) {
           <program-picture
             [href]="content.detail.informations.sharingURL"
             [src]="picture"
             [loaded]="loaded"
+            [alt]="content.detail.informations.title"
           />
         }
         @if (content.detail.informations.personnalities) {
@@ -42,7 +43,9 @@
         </div>
       }
       @if (content) {
-        <span class="duration">Durée: {{ getDuration() }} min</span>
+        <span class="duration"
+          >Durée: {{ this.duration | hourMinute }} min</span
+        >
       }
     }
   </div>

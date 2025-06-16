@@ -1,20 +1,20 @@
-<!-- @for (timeSlices of day()!.timeSlices; track $index) { -->
 <div class="content">
   @for (timeSlice of timeSlices(); track $index) {
-    <!-- @for (timeSlice of timeSlices(); track timeSlice.contents[0].contentID) { -->
     <div class="column">
       <p class="dayName">{{ getDay($index) | date: "fullDate" }}</p>
-      <!-- @for (
+      <!-- @for (content of timeSlice.contents; track $index; let idx = $index) { -->
+      @for (
         content of timeSlice.contents;
-        track content.contentID;
-        let idx = $index
-      ) { -->
-      @for (content of timeSlice.contents; track $index; let idx = $index) {
-        <!-- @for (content of timeSlice.contents; track $index; let idx = $index) { -->
+        track $index;
+        let idx = $index;
+        let first = $first
+      ) {
+        <!-- @if (first) { -->
         <program
           [program]="content"
           [picture_visible]="content.next_episode ? false : true"
         />
+        <!-- } -->
       }
     </div>
   }

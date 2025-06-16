@@ -35,7 +35,7 @@ export class ImgSelectComponent {
   itemSrc: string[] = [];
   btnImgSrc = 0;
 
-  buttonLabel: string = 'toto';
+  buttonLabel: string = 'Chaînes TV';
   /**
    * @param {string} initIndex - The initial index of the selected item.
    */

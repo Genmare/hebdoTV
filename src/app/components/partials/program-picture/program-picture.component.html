@@ -1,7 +1,17 @@
-@if (loaded()) {
-  <a [href]="href()" target="_blank" @animation>
-    <img [src]="src()" />
-  </a>
-} @else {
+<!-- @if (loaded()) { -->
+<!-- <a [href]="href()" target="_blank" @animation class="enter"> -->
+<a [href]="href()" target="_blank">
+  @if (showImg()) {
+    <img
+      [src]="src()"
+      [alt]="alt()"
+      style="box-shadow: 6px px 2px 1px rgba(255, 0, 0, 0.8)"
+      class="enter"
+    />
+  }
+</a>
+<!-- [class.enter]="animate()" -->
+<!-- [class.start]="animate()" -->
+<!-- } @else {
   <div class="loading"></div>
-}
+} -->

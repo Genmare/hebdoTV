@@ -1,11 +1,14 @@
 <div #content class="content">
   <div #center id="center"></div>
-  @for (timeSlices of doubleTimeSlices; track $index) {
+  <!-- @for (timeSlices of doubleTimeSlices; track $index) { -->
+  @for (timeSlices of doubleTimeSlices; track $index; let first = $first) {
+    <!-- @if (first) { -->
     <date-column
       #dayTimeRef
       class="bg-{{ $index }}"
       [timeSlices]="timeSlices"
       [id]="getTimeOfDay($index)"
     />
+    <!-- } -->
   }
 </div>

@@ -73,26 +73,22 @@ export class HomeComponent {
       this.checkSectionVisibility();
     });
 
+    // Initialise la grille d'une chaîne
     this.canalPlusService.daysObservable.subscribe((values) => {
       this.doubleTimeSlices = values;
       console.log('Home, this.days:', this.doubleTimeSlices);
     });
 
+    // Initialise la grille de la chaîne sélectionnée
     this.canalPlusService.currentChannelObservable.subscribe(
       (currentChannel) => {
-        if (currentChannel) {
-          this.canalPlusService
-            .getWeekDataOfChannel(currentChannel)
-            .subscribe((result) => {
-              console.log('hodor', result);
-              this.doubleTimeSlices = result;
-            });
-        }
+        this.canalPlusService
+          .getWeekDataOfChannel(currentChannel)
+          .subscribe((result) => {
+            console.log('hodor', result);
+            this.doubleTimeSlices = result;
+          });
       },
-    );
-
-    this.canalPlusService.daysObservable.subscribe(
-      (values) => (this.doubleTimeSlices = values),
     );
   }
 

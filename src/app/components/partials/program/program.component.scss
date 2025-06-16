@@ -12,6 +12,7 @@
   border: 1px solid #555555;
   // margin-bottom: 1rem;
   transition: transform 200ms;
+  transition: height 200ms;
 
   &:hover {
     z-index: 2;

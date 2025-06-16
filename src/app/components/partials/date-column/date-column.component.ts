@@ -10,7 +10,6 @@ import { TimeSlice } from 'app/models/TimeSlice';
   styleUrl: './date-column.component.scss',
 })
 export class DateColumnComponent {
-  // day = input<Day>();
   timeSlices = input<TimeSlice[]>();
 
   constructor(public elementRef: ElementRef<HTMLElement>) {}
