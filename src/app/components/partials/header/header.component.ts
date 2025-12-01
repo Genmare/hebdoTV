@@ -56,7 +56,8 @@ export class HeaderComponent implements OnInit {
   //   { channelNum: '531', name: 'CINE+ CLASSIC' },
   // ];
   channels: Channel[] = [];
-  selectedChannel = 'toto';
+  selectedChannel = 'Chaîne';
+  dayTimeName = 'morning'; // Default value
 
   option!: string;
   dayNumbers!: number[];
@@ -102,6 +103,9 @@ export class HeaderComponent implements OnInit {
           continue;
         }
         anchorElementRef.classList.remove('active');
+        // this.dayTimeName = this.getDaytimeNameFrEng(section);
+        this.dayTimeName = section;
+        console.log('dayTimeName:', this.dayTimeName, 'section:', section);
       }
     });
   }
@@ -112,6 +116,7 @@ export class HeaderComponent implements OnInit {
       console.log('params:', params);
       this.option = params['channel'];
       this.canalPlusService.setChannel(this.option);
+      console.log('header, option:', this.option);
     });
 
     this.canalPlusService.tokenObservable.subscribe(() => {
@@ -180,6 +185,23 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  // getDaytimeNameFrEng(frDayTime: string) {
+  //   switch (frDayTime) {
+  //     case 'matin':
+  //       return 'morning';
+  //     case 'après-midi':
+  //       return 'afternoon';
+  //     case 'début de soirée':
+  //       return 'early evening';
+  //     case 'soirée':
+  //       return 'evening';
+  //     case 'nuit':
+  //       return 'night';
+  //     default:
+  //       return 'morning'; // Default value if no match found
+  //   }
+  // }
+
   onSelected(value: string) {
     console.log('selected: ', value);
     this.canalPlusService.setChannel(value);
@@ -195,7 +217,17 @@ export class HeaderComponent implements OnInit {
     this.localService.saveData('currentChannel', chan.channelNum);
     this.router.navigate(['/home'], {
       queryParams: { channel: chan.channelNum },
+      fragment: this.dayTimeName,
     });
+    // .then((value) => {
+    //   if (value) {
+    //     console.log('Navigation successful:', value);
+    //   }
+    //   this.router.navigate(['/home'], {
+    //     queryParams: { channel: chan.channelNum },
+    //     fragment: this.dayTimeName,
+    //   });
+    // });
   }
 
   getDay(index: number): Date {

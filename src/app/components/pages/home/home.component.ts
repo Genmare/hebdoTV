@@ -1,4 +1,6 @@
 import {
+  afterNextRender,
+  afterRender,
   Component,
   effect,
   ElementRef,
@@ -17,6 +19,7 @@ import { LocalService } from 'app/services/local.service';
 import { ColorVariables } from 'app/models/ColorVariables';
 import { ViewportScroller } from '@angular/common';
 import { DayTimeService } from 'app/services/day-time.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -48,12 +51,40 @@ export class HomeComponent {
     private localService: LocalService,
     private dayTimeService: DayTimeService,
     private viewport: ViewportScroller,
+    private activatedRoute: ActivatedRoute,
+    private router: ActivatedRoute,
   ) {
     viewport.setOffset([0, 80]);
 
     effect(() => {
       this.dayTimeColorObservables$ = new Map<DayTime, Observable<Hsla>>();
       this.changeColorSubscription(colorService, elementRef);
+      // activatedRoute.fragment.subscribe((fragment) => {
+      //   if (fragment)
+      //     document
+      //       .getElementById(fragment)
+      //       ?.scrollIntoView({ behavior: 'smooth' });
+      // });
+    });
+
+    afterRender(() => {
+      console.log('HomeComponent, afterRender');
+      // activatedRoute.fragment.subscribe((fragment) => {
+      //   if (fragment)
+      //     document
+      //       .getElementById(fragment)
+      //       ?.scrollIntoView({ behavior: 'smooth' });
+      // });
+    });
+    afterNextRender(() => {
+      console.log('HomeComponent, afterNextRender');
+
+      // activatedRoute.fragment.subscribe((fragment) => {
+      //   if (fragment)
+      //     document
+      //       .getElementById(fragment)
+      //       ?.scrollIntoView({ behavior: 'smooth' });
+      // });
     });
 
     let lastUpdate = 0;
