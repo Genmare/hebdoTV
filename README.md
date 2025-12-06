@@ -1,6 +1,6 @@
 ## HebdoTV
 
-Une webapp pour afficher le programme hebdomadaire d'une chaîne du bouquet **Canal Plus** sur une page.
+Une webapp pour afficher le programme hebdomadaire d'une chaîne du bouquet **Canal Plus** sur une seule page.
 ![navigation](<public/readme-assets/hebdoTV - nav.gif>)
 
 - le programme de chaque jours sont répartis en cinq sections ( matin, après-midi, début de soirée, soirée, nuit) représentant les périodes de la journée.
